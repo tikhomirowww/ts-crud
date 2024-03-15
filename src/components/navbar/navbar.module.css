@@ -1,0 +1,14 @@
+.navbar {
+  background-color: aqua;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 50px;
+  column-gap: 20px;
+  color: white;
+}
+
+.navbar a {
+  all: unset;
+  cursor: pointer;
+}

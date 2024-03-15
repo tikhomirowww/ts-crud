@@ -1,0 +1,18 @@
+{
+  "products": [
+    {
+      "title": "Nike",
+      "price": 200,
+      "description": "Kachestvennye",
+      "image": "https://images.pexels.com/photos/786003/pexels-photo-786003.jpeg?cs=srgb&dl=pexels-shane-aldendorff-786003.jpg&fm=jpg",
+      "id": 1
+    },
+    {
+      "title": "Adidas",
+      "price": 250,
+      "description": "Ochen Kachestvennye",
+      "image": "https://st4.depositphotos.com/1005131/25469/i/450/depositphotos_254694672-stock-photo-belarus-minsk-march-2012-sneakers.jpg",
+      "id": 2
+    }
+  ]
+}
