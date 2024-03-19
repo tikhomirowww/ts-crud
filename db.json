@@ -13,6 +13,13 @@
       "description": "Ochen Kachestvennye",
       "image": "https://st4.depositphotos.com/1005131/25469/i/450/depositphotos_254694672-stock-photo-belarus-minsk-march-2012-sneakers.jpg",
       "id": 2
+    },
+    {
+      "title": "hello",
+      "description": "say hello",
+      "image": "https://www.bmwgroup.com/content/dam/grpw/websites/bmwgroup_com/brands/bmw_i/2023/230201_BMW_Group_BMW_i4eDrive40.png",
+      "price": "123",
+      "id": 3
     }
   ]
 }

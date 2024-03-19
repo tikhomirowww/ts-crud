@@ -1,14 +1,20 @@
 import { FC, ReactNode, createContext, useContext, useReducer } from "react";
 import {
   ActionType,
+  ProductType,
   ProductsValuesType,
+  ReducerTypes,
   StatesType,
 } from "../types/products.types";
 import axios from "axios";
+import { type } from "os";
 
-const productsContext = createContext<{} | ProductsValuesType>({});
+const productsContext = createContext<null | ProductsValuesType>(null);
 
-export const useProducts = () => useContext(productsContext);
+export const useProducts = () => {
+  let context = useContext(productsContext);
+  return context;
+};
 
 const INIT_STATE: StatesType = {
   products: [],
@@ -33,12 +39,19 @@ const ProductsContextProvideer: FC<ProviderType> = ({ children }) => {
   const API = "http://localhost:8005/products";
 
   async function getProducts(): Promise<void> {
-    const { data } = await axios.get(API);
-    console.log(data);
+    const { data } = await axios.get<ProductType[]>(API);
+    dispatch({ type: "GET_PRODUCTS", payload: data });
+  }
+
+  async function addProduct(newProduct: ProductType): Promise<void> {
+    await axios.post(API, newProduct);
+    getProducts();
   }
 
   return (
-    <productsContext.Provider value={{ products: state.products, getProducts }}>
+    <productsContext.Provider
+      value={{ products: state.products, getProducts, addProduct }}
+    >
       {children}
     </productsContext.Provider>
   );

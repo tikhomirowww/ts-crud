@@ -4,17 +4,24 @@ export type StatesType = {
 
 export type ProductType = {
   title: string;
-  price: number;
+  price: number | string;
   description: string;
   image: string;
+  id?: number;
+  [key: string]: string | number | undefined;
 };
 
+export enum ReducerTypes {
+  GET_PRODUCTS = "GET_PRODUCTS",
+}
+
 export type ActionType = {
-  type: "GET_PRODUCTS";
+  type: keyof typeof ReducerTypes;
   payload: any;
 };
 
 export type ProductsValuesType = {
   products: ProductType[];
   getProducts: () => Promise<void>;
+  addProduct: (newProduct: ProductType) => Promise<void>;
 };
