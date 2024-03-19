@@ -62,6 +62,11 @@ const ProductsContextProvideer: FC<ProviderType> = ({ children }) => {
     getProducts();
   }
 
+  async function deleteProduct(id: number) {
+    await axios.delete(`${API}/${id}`);
+    getProducts();
+  }
+
   return (
     <productsContext.Provider
       value={{
@@ -71,6 +76,7 @@ const ProductsContextProvideer: FC<ProviderType> = ({ children }) => {
         addProduct,
         getOneProduct,
         editProduct,
+        deleteProduct,
       }}
     >
       {children}

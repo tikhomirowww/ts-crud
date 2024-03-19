@@ -28,5 +28,6 @@ export type ProductsValuesType = {
   getProducts: () => Promise<void>;
   addProduct: (newProduct: ProductType) => Promise<void>;
   getOneProduct: (id: string) => Promise<void>;
+  deleteProduct: (id: number) => Promise<void>;
   editProduct: (id: string, editedProduct: ProductType) => Promise<void>;
 };

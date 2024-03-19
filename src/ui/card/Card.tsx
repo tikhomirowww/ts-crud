@@ -1,10 +1,12 @@
 import { FC } from "react";
 import styles from "./card.module.css";
-import { ProductType } from "../../types/products.types";
+import { ProductType, ProductsValuesType } from "../../types/products.types";
 import Button from "../button/Button";
 import { Link } from "react-router-dom";
+import { useProducts } from "../../contexts/ProductsContextProvideer";
 
 const Card: FC<{ card: ProductType }> = ({ card }) => {
+  const { deleteProduct } = useProducts() as ProductsValuesType;
   return (
     <div className={styles.card}>
       <img src={card.image} alt="card" />
@@ -15,7 +17,9 @@ const Card: FC<{ card: ProductType }> = ({ card }) => {
         <Link to={`/edit/${card.id}`}>
           <Button>Update</Button>
         </Link>
-        <Button bg="red">Delete</Button>
+        <Button onClick={() => deleteProduct(card.id!)} bg="red">
+          Delete
+        </Button>
       </div>
     </div>
   );
