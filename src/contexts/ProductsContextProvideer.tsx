@@ -3,11 +3,9 @@ import {
   ActionType,
   ProductType,
   ProductsValuesType,
-  ReducerTypes,
   StatesType,
 } from "../types/products.types";
 import axios from "axios";
-import { type } from "os";
 
 const productsContext = createContext<null | ProductsValuesType>(null);
 
@@ -18,12 +16,15 @@ export const useProducts = () => {
 
 const INIT_STATE: StatesType = {
   products: [],
+  oneProduct: null,
 };
 
 function reducer(state = INIT_STATE, action: ActionType): StatesType {
   switch (action.type) {
     case "GET_PRODUCTS":
       return { ...state, products: action.payload };
+    case "GET_ONE_PRODUCT":
+      return { ...state, oneProduct: action.payload };
     default:
       return state;
   }
@@ -48,9 +49,29 @@ const ProductsContextProvideer: FC<ProviderType> = ({ children }) => {
     getProducts();
   }
 
+  async function getOneProduct(id: string) {
+    const { data } = await axios.get<ProductType>(`${API}/${id}`);
+    dispatch({
+      type: "GET_ONE_PRODUCT",
+      payload: data,
+    });
+  }
+
+  async function editProduct(id: string, editedProduct: ProductType) {
+    await axios.patch(`${API}/${id}`, editedProduct);
+    getProducts();
+  }
+
   return (
     <productsContext.Provider
-      value={{ products: state.products, getProducts, addProduct }}
+      value={{
+        products: state.products,
+        oneProduct: state.oneProduct,
+        getProducts,
+        addProduct,
+        getOneProduct,
+        editProduct,
+      }}
     >
       {children}
     </productsContext.Provider>

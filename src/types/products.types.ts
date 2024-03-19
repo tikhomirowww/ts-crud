@@ -1,5 +1,6 @@
 export type StatesType = {
   products: ProductType[];
+  oneProduct: ProductType | null;
 };
 
 export type ProductType = {
@@ -13,6 +14,7 @@ export type ProductType = {
 
 export enum ReducerTypes {
   GET_PRODUCTS = "GET_PRODUCTS",
+  GET_ONE_PRODUCT = "GET_ONE_PRODUCT",
 }
 
 export type ActionType = {
@@ -22,6 +24,9 @@ export type ActionType = {
 
 export type ProductsValuesType = {
   products: ProductType[];
+  oneProduct: ProductType | null;
   getProducts: () => Promise<void>;
   addProduct: (newProduct: ProductType) => Promise<void>;
+  getOneProduct: (id: string) => Promise<void>;
+  editProduct: (id: string, editedProduct: ProductType) => Promise<void>;
 };

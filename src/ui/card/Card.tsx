@@ -2,6 +2,7 @@ import { FC } from "react";
 import styles from "./card.module.css";
 import { ProductType } from "../../types/products.types";
 import Button from "../button/Button";
+import { Link } from "react-router-dom";
 
 const Card: FC<{ card: ProductType }> = ({ card }) => {
   return (
@@ -11,7 +12,9 @@ const Card: FC<{ card: ProductType }> = ({ card }) => {
       <h4>Price: {card.price}</h4>
       <p>{card.description}</p>
       <div className={styles.actions}>
-        <Button>Update</Button>
+        <Link to={`/edit/${card.id}`}>
+          <Button>Update</Button>
+        </Link>
         <Button bg="red">Delete</Button>
       </div>
     </div>
